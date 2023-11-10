@@ -1,13 +1,10 @@
-resource "google_folder" "my_folder" 
-{
-  display_name = "my-folder"
-  parent       = "organizations/123456789"
+# create a organisation
+data "google_organization" "org" {
+  domain = "mynanni.co.in"
 }
 
-resource "google_folder" "subfolder" 
-{
-  display_name = "My Subfolder"
-  parent       = google_folder.root_folder.name
+resource "google_folder" "Department" {
+    display_name = "dep"
+    parent = data.google_organization.org.name
+  
 }
-
- 
